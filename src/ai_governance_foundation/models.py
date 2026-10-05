@@ -49,3 +49,39 @@ class WriteReceipt:
     resource_type: str
     resource_id: str
     replayed: bool
+
+
+@dataclass(frozen=True)
+class IncidentAction:
+    """表示事件处置方案中的一个可跟踪动作。"""
+
+    action_id: str
+    incident_id: str
+    code: str
+    title: str
+    stage: str
+    owner_role: str
+    blocking: bool
+    sla_hours: int | None
+    status: str
+    sort_order: int
+    assignee_id: str | None
+    created_at: str
+    completed_at: str | None
+
+
+@dataclass(frozen=True)
+class IncidentNotification:
+    """表示一次需要送达的处置通报。"""
+
+    notification_id: str
+    incident_id: str
+    recipient: str
+    recipient_name: str
+    channel: str
+    sla_minutes: int | None
+    status: str
+    attempts: int
+    last_error: str | None
+    created_at: str
+    delivered_at: str | None
